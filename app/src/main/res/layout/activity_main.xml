@@ -8,110 +8,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cccccc">
-
-        <Chronometer
-            android:id="@+id/chronometer1"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:format="예약에 걸린 시간  %s" />
-
-    </LinearLayout>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/rdoCal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="날짜 설정" />
-        <RadioButton
-            android:id="@+id/rdoTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시간 설정" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <DatePicker
-                android:id="@+id/calendarView1"
-                android:datePickerMode="calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <TimePicker
-                android:id="@+id/timePicker1"
-                android:timePickerMode="spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
+        android:completionHint="선택하세요"
+        android:completionThreshold="2"
+        android:hint="자동완성텍스트뷰">
+    </AutoCompleteTextView>
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#cccccc">
-
-        <TextView
-            android:id="@+id/tvYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0000"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="년"/>
-        <TextView
-            android:id="@+id/tvMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="월"/>
-        <TextView
-            android:id="@+id/tvDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="일"/>
-        <TextView
-            android:id="@+id/tvHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시"/>
-        <TextView
-            android:id="@+id/tvMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="분 예약됨"/>
-    </LinearLayout>
-
+        android:completionHint="선택하세요"
+        android:completionThreshold="2"
+        android:hint="멀티자동완성텍스트뷰" />
 </LinearLayout>
