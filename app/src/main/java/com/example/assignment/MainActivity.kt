@@ -13,8 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var btnPrev: Button
-    lateinit var btnNext: Button
+    lateinit var btnStart: Button
+    lateinit var btnStop: Button
     lateinit var viewFlipper: ViewFlipper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,16 +25,18 @@ class MainActivity : AppCompatActivity() {
         title = "202235245 김태윤 8주차"
         setContentView(R.layout.activity_main)
 
-        btnPrev = findViewById<Button>(R.id.btnPrev)
-        btnNext = findViewById<Button>(R.id.btnNext)
+        btnStart = findViewById<Button>(R.id.btnStart)
+        btnStop = findViewById<Button>(R.id.btnStop)
         viewFlipper = findViewById<ViewFlipper>(R.id.viewFlipper1)
 
-        btnPrev.setOnClickListener {
-            viewFlipper.showPrevious()
+        viewFlipper.flipInterval = 1000
+
+        btnStart.setOnClickListener {
+            viewFlipper.startFlipping()
         }
 
-        btnNext.setOnClickListener {
-            viewFlipper.showNext()
+        btnStop.setOnClickListener {
+            viewFlipper.stopFlipping()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
