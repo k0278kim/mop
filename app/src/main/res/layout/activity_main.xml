@@ -11,7 +11,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#cccccc">
 
         <Chronometer
             android:id="@+id/chronometer1"
@@ -19,12 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:format="예약에 걸린 시간  %s" />
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="예약 시작" />
 
     </LinearLayout>
 
@@ -36,7 +31,7 @@
             android:id="@+id/rdoCal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="날짜 설정 (캘린더뷰)" />
+            android:text="날짜 설정" />
         <RadioButton
             android:id="@+id/rdoTime"
             android:layout_width="wrap_content"
@@ -52,11 +47,11 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <CalendarView
+            <DatePicker
                 android:id="@+id/calendarView1"
+                android:datePickerMode="calendar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:showWeekNumber="false" />
+                android:layout_height="wrap_content" />
             <TimePicker
                 android:id="@+id/timePicker1"
                 android:timePickerMode="spinner"
@@ -69,12 +64,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:background="#cccccc">
-        <Button
-            android:id="@+id/btnEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="예약 완료" />
+
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
