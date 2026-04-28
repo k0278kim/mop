@@ -3,13 +3,19 @@ package com.example.assignment
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.MultiAutoCompleteTextView
+import android.widget.ViewFlipper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var btnPrev: Button
+    lateinit var btnNext: Button
+    lateinit var viewFlipper: ViewFlipper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,16 +25,17 @@ class MainActivity : AppCompatActivity() {
         title = "202235245 김태윤 8주차"
         setContentView(R.layout.activity_main)
 
-        var items = arrayOf("CSI-뉴욕", "CSI-라스베가스", "CSI-마이애미", "Friends", "Fringe", "Lost")
+        btnPrev = findViewById<Button>(R.id.btnPrev)
+        btnNext = findViewById<Button>(R.id.btnNext)
+        viewFlipper = findViewById<ViewFlipper>(R.id.viewFlipper1)
 
-        var auto = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView1)
-        var adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, items)
-        auto.setAdapter(adapter)
+        btnPrev.setOnClickListener {
+            viewFlipper.showPrevious()
+        }
 
-        var multi = findViewById<MultiAutoCompleteTextView>(R.id.multiAutoCompleteTextView1)
-        var token = MultiAutoCompleteTextView.CommaTokenizer()
-        multi.setTokenizer(token)
-        multi.setAdapter(adapter)
+        btnNext.setOnClickListener {
+            viewFlipper.showNext()
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
