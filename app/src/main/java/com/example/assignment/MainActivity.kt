@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,20 +16,22 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var baseLayout: LinearLayout
-    lateinit var button1: Button
+    lateinit var baseLayout: RelativeLayout
+    lateinit var et: EditText
+    lateinit var iv: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.drawable.ic_launcher)
-        title = "202235245 김태윤 8주차"
+        title = "202235245 김태윤 11주차"
 
         setContentView(R.layout.activity_main)
 
-        baseLayout = findViewById<LinearLayout>(R.id.baseLayout)
-        button1 = findViewById<Button>(R.id.button1)
+        baseLayout = findViewById<RelativeLayout>(R.id.baseLayout)
+        et = findViewById<EditText>(R.id.et)
+        iv = findViewById<ImageView>(R.id.iv)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.baseLayout)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -38,13 +43,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
 
-//        menu!!.add(0, 1, 0, "배경색 (빨강)")
-//        menu!!.add(0, 2, 0, "배경색 (초록)")
-//        menu!!.add(0, 3, 0, "배경색 (파랑)")
-//
-//        var sMenu: SubMenu = menu.addSubMenu("버튼 변경 >> ")
-//        var
-
         var mInflater = menuInflater
         mInflater.inflate(R.menu.menu1, menu)
         return true
@@ -52,24 +50,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.itemRed -> {
-                baseLayout.setBackgroundColor(Color.RED)
+            R.id.rotate -> {
+                iv.rotation = et.text.toString().toFloat()
                 return true
             }
-            R.id.itemBlue -> {
-                baseLayout.setBackgroundColor(Color.BLUE)
+            R.id.item1 -> {
+                iv.setImageResource(R.drawable.halla)
+                item.isChecked = true
                 return true
             }
-            R.id.itemGreen -> {
-                baseLayout.setBackgroundColor(Color.GREEN)
+            R.id.item2 -> {
+                iv.setImageResource(R.drawable.chooja)
+                item.isChecked = true
                 return true
             }
-            R.id.subRotate -> {
-                button1.rotation = 45f
-                return true
-            }
-            R.id.subSize -> {
-                button1.scaleX = 2f
+            R.id.item3 -> {
+                iv.setImageResource(R.drawable.beom)
+                item.isChecked = true
                 return true
             }
         }
