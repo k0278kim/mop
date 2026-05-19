@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         dp.init(cYear, cMonth, cDay) { view, year, monthOfYear, dayOfMonth ->
             fileName = (Integer.toString(year) + "_"
-                    + Integer.toString(monthOfYear - 1) + "_"
+                    + Integer.toString(monthOfYear + 1) + "_"
                     + Integer.toString(dayOfMonth) + ".txt")
             var str = readDiary(fileName)
             edtDiary.setText(str)
