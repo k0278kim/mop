@@ -8,26 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <DatePicker
-        android:id="@+id/datePicker1"
+    <Button
+        android:id="@+id/btnFilelist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false" />
+        android:text="시스템 폴더의 폴더/파일 목록" />
 
     <EditText
-        android:id="@+id/edtDiary"
+        android:id="@+id/edtFilelist"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#00ff00"
-        android:lines="8"/>
-
-    <Button
-        android:id="@+id/btnWrite"
-        android:enabled="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="새로 저장" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

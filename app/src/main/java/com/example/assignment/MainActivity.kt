@@ -2,25 +2,17 @@ package com.example.assignment
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Environment
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.io.FileInputStream
-import java.io.IOException
-import java.util.Calendar
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var dp: DatePicker
-    lateinit var edtDiary: EditText
-    lateinit var btnWrite: Button
-    lateinit var fileName: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,30 +22,23 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        dp = findViewById<DatePicker>(R.id.datePicker1)
-        edtDiary = findViewById<EditText>(R.id.edtDiary)
-        btnWrite = findViewById<Button>(R.id.btnWrite)
+        var btnFilelist: Button
+        var edtFilelist: EditText
+        btnFilelist = findViewById<Button>(R.id.btnFilelist)
+        edtFilelist = findViewById<EditText>(R.id.edtFilelist)
 
-        var cal = Calendar.getInstance()
-        var cYear = cal.get(Calendar.YEAR)
-        var cMonth = cal.get(Calendar.MONTH)
-        var cDay = cal.get(Calendar.DAY_OF_MONTH)
+        btnFilelist.setOnClickListener {
+            var sysDir = Environment.getRootDirectory().absolutePath
+            var sysFiles = File(sysDir).listFiles()
 
-        dp.init(cYear, cMonth, cDay) { view, year, monthOfYear, dayOfMonth ->
-            fileName = (Integer.toString(year) + "_"
-                    + Integer.toString(monthOfYear + 1) + "_"
-                    + Integer.toString(dayOfMonth) + ".txt")
-            var str = readDiary(fileName)
-            edtDiary.setText(str)
-            btnWrite.isEnabled = true
-        }
-
-        btnWrite.setOnClickListener {
-            var outFs = openFileOutput(fileName, Context.MODE_PRIVATE)
-            var str = edtDiary.text.toString()
-            outFs.write(str.toByteArray())
-            outFs.close()
-            Toast.makeText(applicationContext, "$fileName 이 저장됨", Toast.LENGTH_SHORT).show()
+            var strFname: String
+            for (i in sysFiles.indices) {
+                if (sysFiles[i].isDirectory == true)
+                    strFname = "<폴더> " + sysFiles[i].toString()
+                else
+                    strFname = "<파일> " + sysFiles[i].toString()
+                edtFilelist.setText(edtFilelist.text.toString() + "\n" + strFname)
+            }
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -61,22 +46,5 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    }
-
-    fun readDiary(fName: String): String? {
-        var diaryStr: String? = null
-        var inFs: FileInputStream
-        try {
-            inFs = openFileInput(fName)
-            var txt = ByteArray(500)
-            inFs.read(txt)
-            inFs.close()
-            diaryStr = txt.toString(Charsets.UTF_8).trim()
-            btnWrite.text = "수정하기"
-        } catch (e: IOException) {
-            edtDiary.hint = "일기 없음"
-            btnWrite.text = "새로 저장"
-        }
-        return diaryStr
     }
 }
