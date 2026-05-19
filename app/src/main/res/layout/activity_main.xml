@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <DatePicker
+        android:id="@+id/datePicker1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnWrite"
-        android:text="내장 메모리에 파일 쓰기" />
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false" />
+
+    <EditText
+        android:id="@+id/edtDiary"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00ff00"
+        android:lines="8"/>
 
     <Button
+        android:id="@+id/btnWrite"
+        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRead"
-        android:text="내장 메모리에서 파일 읽기" />
+        android:text="새로 저장" />
 
 </LinearLayout>
