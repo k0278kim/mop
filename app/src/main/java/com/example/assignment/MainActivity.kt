@@ -1,9 +1,11 @@
 package com.example.assignment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageView
+import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,36 +22,30 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        var voteCount = IntArray(9) { 0 }
-        var image = arrayOfNulls<ImageView>(9)
-        var imageId = arrayOf(R.id.iv1, R.id.iv2, R.id.iv3,
-            R.id.iv4, R.id.iv5, R.id.iv6,
-            R.id.iv7, R.id.iv8, R.id.iv9)
-
-        var imgName = arrayOf("독서하는 소녀", "꽃장식 모자 소녀",
-            "부채를 든 소녀", "이레느깡 단 베르양",
-            "잠자는 소녀", "테라스의 두 자매", "피아노 레슨",
-            "피아노 앞의 소녀들", "해변에서")
-
-        for (i in imageId.indices) {
-            image[i] = findViewById<ImageView>(imageId[i])
-            image[i]!!.setOnClickListener {
-                voteCount[i]++
-                Toast.makeText(applicationContext, imgName[i] + ": 총 " + voteCount[i] + " 표", Toast.LENGTH_SHORT).show()
-            }
+        var btnNewActivity = findViewById<Button>(R.id.btnNewActivity)
+        btnNewActivity.setOnClickListener {
+            var rdGroup = findViewById<RadioGroup>(R.id.rd_group)
+            var edtNum1 = findViewById<EditText>(R.id.edt_first)
+            var edtNum2 = findViewById<EditText>(R.id.edt_second)
+            var intent = Intent(applicationContext, SecondActivity::class.java)
+            intent.putExtra("Num1", Integer.parseInt(edtNum1.text.toString()))
+            intent.putExtra("Num2", Integer.parseInt(edtNum2.text.toString()))
+            intent.putExtra("Type", rdGroup.checkedRadioButtonId)
+            startActivityForResult(intent, 0)
         }
 
-        var btnFinish = findViewById<Button>(R.id.btnResult)
-        btnFinish.setOnClickListener {
-            var intent = Intent(applicationContext, ResultActivity::class.java)
-            intent.putExtra("VoteCount", voteCount)
-            intent.putExtra("ImageName", imgName)
-            startActivity(intent)
-        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            var hap = data!!.getIntExtra("Result", 0)
+            Toast.makeText(applicationContext, "계산 결과 : $hap", Toast.LENGTH_SHORT).show()
         }
     }
 }
