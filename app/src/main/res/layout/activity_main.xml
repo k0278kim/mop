@@ -8,52 +8,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edt_first" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_second" />
-
-    <RadioGroup
-        android:id="@+id/rd_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/rd_add"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="더하기" />
-
-        <RadioButton
-            android:id="@+id/rd_sub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="빼기" />
-
-        <RadioButton
-            android:id="@+id/rd_mul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="곱하기" />
-
-        <RadioButton
-            android:id="@+id/rd_div"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나누기" />
-
-    </RadioGroup>
+        android:id="@+id/btnDial"
+        android:text="전화 걸기" />
 
     <Button
-        android:id="@+id/btnNewActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="계산하기" />
+        android:id="@+id/btnWeb"
+        android:text="홈 페이지 열기" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnGoogle"
+        android:text="구글 맵 열기" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSearch"
+        android:text="구글 검색하기" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSms"
+        android:text="문자 보내기" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPhoto"
+        android:text="사진 찍기" />
 
 </LinearLayout>
